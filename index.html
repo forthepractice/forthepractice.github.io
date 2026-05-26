@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For the Practice — Insight that moves you forward.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --amber: #EF9F27; --amber-light: #FAC775; --amber-pale: #FAEEDA;
+    --teal: #1D9E75; --teal-light: #E1F5EE;
+    --charcoal: #2C2C2A; --text-mid: #5F5E5A; --text-light: #9B9A96;
+    --border: #E8E7E2; --white: #FFFFFF; --off-white: #FAFAF8;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--charcoal); font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: sticky; top: 0; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 1rem 3rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+  .nav-logo { display: flex; flex-direction: column; gap: 2px; }
+  .nav-logo-text { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; color: var(--charcoal); letter-spacing: 0.01em; line-height: 1; }
+  .nav-logo-text span { color: var(--amber); }
+  .nav-logo-rule { width: 100%; height: 1.5px; background: var(--teal); }
+  .nav-logo-tag { font-size: 0.6rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-light); }
+  .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.08em; color: var(--text-mid); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--amber); }
+  .nav-cta { background: var(--amber) !important; color: var(--white) !important; padding: 0.55rem 1.4rem; border-radius: 2px; font-weight: 500 !important; }
+  .nav-cta:hover { background: var(--amber-light) !important; color: var(--charcoal) !important; }
+
+  /* HERO */
+  .hero { min-height: 92vh; display: flex; align-items: center; padding: 5rem 3rem; position: relative; overflow: hidden; background: var(--white); }
+  .hero-bg-circle-1 { position: absolute; top: -120px; right: -80px; width: 520px; height: 520px; border-radius: 50%; background: var(--amber-pale); opacity: 0.7; z-index: 0; }
+  .hero-bg-circle-2 { position: absolute; bottom: -100px; left: -60px; width: 360px; height: 360px; border-radius: 50%; background: var(--teal-light); opacity: 0.5; z-index: 0; }
+  .hero-bg-dot { position: absolute; bottom: 120px; right: 200px; width: 12px; height: 12px; border-radius: 50%; background: var(--teal); opacity: 0.4; }
+  .hero-inner { position: relative; z-index: 1; max-width: 780px; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.5rem; }
+  .hero-eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--teal); display: block; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 5.5vw, 4.8rem); font-weight: 400; line-height: 1.1; color: var(--charcoal); margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+  .hero h1 em { font-style: italic; color: var(--amber); }
+  .hero-rule { width: 56px; height: 3px; background: var(--amber); margin: 1.75rem 0; border-radius: 2px; }
+  .hero-sub { font-size: 1.05rem; color: var(--text-mid); max-width: 540px; font-weight: 300; line-height: 1.85; margin-bottom: 2.5rem; }
+  .hero-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+  .btn-primary { display: inline-block; background: var(--amber); color: var(--white); padding: 0.9rem 2.25rem; border-radius: 2px; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+  .btn-primary:hover { background: var(--amber-light); transform: translateY(-1px); }
+  .btn-ghost { display: inline-block; color: var(--teal); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-decoration: none; border-bottom: 1.5px solid var(--teal); padding-bottom: 2px; transition: opacity 0.2s; }
+  .btn-ghost:hover { opacity: 0.7; }
+
+  /* PHILOSOPHY */
+  .philosophy-band { background: var(--charcoal); padding: 4.5rem 3rem; }
+  .philosophy-band .inner { max-width: 860px; margin: 0 auto; }
+  .philosophy-band .eyebrow { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+  .philosophy-band .eyebrow::before { content: ''; width: 20px; height: 1.5px; background: var(--teal); display: block; }
+  .philosophy-band blockquote { font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 400; font-style: italic; color: var(--white); line-height: 1.5; margin-bottom: 1.5rem; }
+  .philosophy-band blockquote em { color: var(--amber); font-style: normal; }
+  .philosophy-band p { font-size: 0.95rem; color: #9B9A96; font-weight: 300; line-height: 1.9; max-width: 680px; }
+  .philosophy-band p strong { color: #D4D3CF; font-weight: 400; }
+
+  /* SECTIONS */
+  .section { padding: 6rem 3rem; max-width: 1080px; margin: 0 auto; }
+  .section-eyebrow { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+  .section-eyebrow::before { content: ''; width: 20px; height: 1.5px; background: var(--teal); display: block; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 400; color: var(--charcoal); line-height: 1.2; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
+  .section-title em { font-style: italic; color: var(--amber); }
+  .section-rule { width: 40px; height: 2.5px; background: var(--amber); margin-bottom: 1.5rem; border-radius: 2px; }
+  .section-intro { font-size: 1rem; color: var(--text-mid); max-width: 600px; font-weight: 300; margin-bottom: 3.5rem; line-height: 1.9; }
+
+  /* SERVICES */
+  .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .service-card { background: var(--off-white); border: 1px solid var(--border); border-radius: 3px; padding: 2.25rem 2rem; position: relative; overflow: hidden; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
+  .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: var(--amber); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
+  .service-card:hover { transform: translateY(-4px); border-color: var(--amber-light); box-shadow: 0 12px 40px rgba(239,159,39,0.1); }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-num { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 400; color: var(--amber-pale); line-height: 1; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
+  .service-tag { display: inline-block; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); background: var(--teal-light); padding: 0.2rem 0.65rem; border-radius: 1px; margin-bottom: 0.5rem; }
+  .service-type { display: block; font-size: 0.68rem; font-weight: 400; color: var(--text-light); letter-spacing: 0.06em; margin-bottom: 0.75rem; font-style: italic; }
+  .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 500; color: var(--charcoal); margin-bottom: 0.4rem; line-height: 1.3; }
+  .service-who { font-size: 0.78rem; font-weight: 400; color: var(--teal); margin-bottom: 0.75rem; font-style: italic; }
+  .service-card p { font-size: 0.875rem; color: var(--text-mid); line-height: 1.8; font-weight: 300; margin-bottom: 1.25rem; }
+  .service-card ul { list-style: none; border-top: 1px solid var(--border); padding-top: 1rem; }
+  .service-card ul li { font-size: 0.8rem; color: var(--text-mid); font-weight: 300; padding: 0.25rem 0 0.25rem 1rem; position: relative; line-height: 1.6; }
+  .service-card ul li::before { content: '·'; position: absolute; left: 0; color: var(--amber); font-size: 1rem; line-height: 1.4; }
+  .service-card ul li.open-ended { color: var(--text-light); font-style: italic; }
+
+  /* DIFFERENTIATORS */
+  .diff-band { background: var(--amber-pale); padding: 5rem 3rem; }
+  .diff-band .inner { max-width: 1080px; margin: 0 auto; }
+  .diff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-top: 3rem; }
+  .diff-card { background: var(--white); border-radius: 3px; padding: 1.75rem; border: 1px solid rgba(239,159,39,0.2); }
+  .diff-icon { width: 36px; height: 36px; background: var(--amber); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+  .diff-icon svg { width: 16px; height: 16px; stroke: var(--white); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .diff-card strong { display: block; font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 500; color: var(--charcoal); margin-bottom: 0.4rem; }
+  .diff-card span { font-size: 0.85rem; color: var(--text-mid); font-weight: 300; line-height: 1.75; }
+
+  /* NEW GRAD */
+  .newgrad-band { background: var(--teal); padding: 4rem 3rem; }
+  .newgrad-band .inner { max-width: 860px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center; }
+  .newgrad-band .eyebrow { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 0.75rem; }
+  .newgrad-band h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 400; color: var(--white); margin-bottom: 0.75rem; line-height: 1.3; }
+  .newgrad-band p { font-size: 0.9rem; color: rgba(255,255,255,0.75); font-weight: 300; line-height: 1.8; }
+  .btn-white { display: inline-block; background: var(--white); color: var(--teal); padding: 0.85rem 2rem; border-radius: 2px; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: background 0.2s; }
+  .btn-white:hover { background: var(--teal-light); }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-visual-card { background: var(--off-white); border: 1px solid var(--border); border-radius: 3px; padding: 3rem 2.5rem; text-align: center; position: relative; }
+  .about-visual-card::before { content: ''; position: absolute; top: 10px; left: 10px; right: -10px; bottom: -10px; border: 1.5px solid var(--amber-light); border-radius: 3px; z-index: -1; }
+  .about-num { font-family: 'Playfair Display', serif; font-size: 5.5rem; font-weight: 400; color: var(--charcoal); line-height: 1; margin-bottom: 0.25rem; letter-spacing: -0.02em; }
+  .about-num-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-light); margin-bottom: 1.5rem; }
+  .about-rule { width: 32px; height: 2px; background: var(--amber); margin: 0 auto 1.5rem; border-radius: 1px; }
+  .about-quote { font-family: 'Playfair Display', serif; font-size: 1rem; font-style: italic; color: var(--teal); line-height: 1.6; }
+  .about-text h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 400; color: var(--charcoal); line-height: 1.25; margin-bottom: 1rem; letter-spacing: -0.01em; }
+  .about-text p { font-size: 0.925rem; color: var(--text-mid); font-weight: 300; line-height: 1.9; margin-bottom: 1rem; }
+
+  /* CONTACT */
+  .contact-section { background: var(--charcoal); padding: 6rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  .contact-section::before { content: ''; position: absolute; top: -80px; right: -80px; width: 300px; height: 300px; border-radius: 50%; background: var(--amber); opacity: 0.06; }
+  .contact-section::after { content: ''; position: absolute; bottom: -60px; left: -60px; width: 200px; height: 200px; border-radius: 50%; background: var(--teal); opacity: 0.08; }
+  .contact-section .eyebrow { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+  .contact-section .eyebrow::before, .contact-section .eyebrow::after { content: ''; width: 20px; height: 1.5px; background: var(--teal); display: block; }
+  .contact-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 400; color: var(--white); margin-bottom: 0.75rem; line-height: 1.25; letter-spacing: -0.01em; position: relative; z-index: 1; }
+  .contact-section h2 em { font-style: italic; color: var(--amber); }
+  .contact-rule { width: 40px; height: 2.5px; background: var(--amber); margin: 1.25rem auto; border-radius: 2px; }
+  .contact-section p { font-size: 0.95rem; color: #9B9A96; font-weight: 300; max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.9; position: relative; z-index: 1; }
+  .btn-outline { display: inline-block; border: 1.5px solid rgba(239,159,39,0.5); color: var(--amber); padding: 0.9rem 2.5rem; border-radius: 2px; font-size: 0.8rem; font-weight: 400; letter-spacing: 0.12em; text-decoration: none; transition: border-color 0.2s, background 0.2s; position: relative; z-index: 1; }
+  .btn-outline:hover { border-color: var(--amber); background: rgba(239,159,39,0.08); }
+
+  /* FOOTER */
+  footer { background: #1A1A18; padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 400; color: #6B6A66; letter-spacing: 0.02em; }
+  .footer-logo span { color: var(--amber); }
+  footer p { font-size: 0.75rem; color: #4A4A47; letter-spacing: 0.04em; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; } .nav-links { gap: 1rem; }
+    .hero { padding: 4rem 1.5rem; min-height: auto; }
+    .section { padding: 4rem 1.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-visual-card::before { display: none; }
+    .newgrad-band { padding: 3rem 1.5rem; }
+    .newgrad-band .inner { grid-template-columns: 1fr; gap: 1.5rem; }
+    .philosophy-band { padding: 3.5rem 1.5rem; }
+    .diff-band { padding: 4rem 1.5rem; }
+    .contact-section { padding: 4rem 1.5rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-text">for the <span>practice.</span></div>
+    <div class="nav-logo-rule"></div>
+    <div class="nav-logo-tag">Insight that moves you forward.</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-circle-1"></div>
+  <div class="hero-bg-circle-2"></div>
+  <div class="hero-bg-dot"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Provider Operations & Advisory · Texas</p>
+    <h1>We see what others miss —<br>and <em>act</em> before it<br>becomes a problem.</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">Independent practices and providers deserve more than generic support and information shuffling. For the Practice brings 20 years of payer-side expertise to your corner — so you're always a step ahead.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Work with us</a>
+      <a href="#services" class="btn-ghost">See our services →</a>
+    </div>
+  </div>
+</section>
+
+<div class="philosophy-band">
+  <div class="inner">
+    <p class="eyebrow">Our philosophy</p>
+    <blockquote>"Most consultants learn healthcare operations from the outside in. We learned it from the <em>inside out.</em>"</blockquote>
+    <p>Twenty years inside a health insurance company — across claims processing, audit and overpayment recovery, network management and contracting, and provider relations — gives For the Practice a complete view of how healthcare payments actually work. We've sat at every desk. We've seen every mistake. We understand every process from both sides of the table. <strong>That complete view is not just our background — it's how we approach every service we offer.</strong></p>
+  </div>
+</div>
+
+<div class="section" id="services">
+  <p class="section-eyebrow">What we do</p>
+  <h2 class="section-title">Five ways we support <em>your practice</em></h2>
+  <div class="section-rule"></div>
+  <p class="section-intro">We meet you where you are. Whether you need day-to-day operational support or deep strategic insight, every service is built on the same foundation — seeing what others miss and acting before it becomes a problem.</p>
+
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <span class="service-tag">Ongoing Retainer</span>
+      <span class="service-type">Monthly commitment · always available</span>
+      <h3>Operations Support</h3>
+      <p class="service-who">For practices that need a consistent operational partner in the background</p>
+      <p>You don't need a full time hire — you need someone knowledgeable who is reliably there. We handle what keeps coming up — payer calls, voicemails, follow-ups, outstanding issues — so nothing falls through the cracks and you're not the one chasing everything down. We stay on top of it so you don't have to.</p>
+      <ul>
+        <li>Running your practice without dedicated administrative staff</li>
+        <li>Staying on top of payer communication without it consuming your day</li>
+        <li>Having someone watch for issues before they become problems</li>
+        <li>Keeping operations running consistently without constant oversight on your end</li>
+        <li class="open-ended">...and other ongoing operational needs that require a reliable, knowledgeable presence</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <span class="service-tag">As Needed</span>
+      <span class="service-type">No monthly commitment · pay per engagement</span>
+      <h3>On Call Support</h3>
+      <p class="service-who">For practices that need expert help when something comes up</p>
+      <p>You don't need someone every week — but when something surfaces, you need someone who knows exactly what to do. No retainer, no monthly commitment. You reach out when you need us and we handle it. Simple as that.</p>
+      <ul>
+        <li>Handling credentialing renewals when they come up</li>
+        <li>Onboarding with a new payer without navigating it alone</li>
+        <li>Resolving a payer issue that's been sitting unaddressed</li>
+        <li>Getting answers when something comes up and you're not sure what to do</li>
+        <li class="open-ended">...and other situations where you need expert support without a long term commitment</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <span class="service-tag">One Time Project</span>
+      <span class="service-type">Defined engagement · clear finish line</span>
+      <h3>Practice Setup</h3>
+      <p class="service-who">For providers building their foundation from the ground up</p>
+      <p>Before your first claim goes out or your first patient walks in, everything needs to be in order. This is a defined engagement with a clear beginning and end — we come in, build it right, and hand it off. You move forward with the right foundation already in place, without having to figure out the process alone.</p>
+      <ul>
+        <li>Starting fresh as an independent provider for the first time</li>
+        <li>Building out payer relationships from the ground up</li>
+        <li>Rebuilding after a disorganized or incomplete initial setup</li>
+        <li>Adding insurance billing after operating outside of insurance</li>
+        <li class="open-ended">...and other situations where getting set up correctly from the start matters</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <span class="service-tag">One Time Project</span>
+      <span class="service-type">Deep analysis · written findings</span>
+      <h3>Practice Diagnostic</h3>
+      <p class="service-who">For practices where something isn't adding up</p>
+      <p>Something is off — but you can't quite put your finger on it. Denials are climbing, payments don't seem right, the same problem keeps coming back, or something just doesn't feel the way it should. We go deep. We find the patterns, connections, and warning signs hiding beneath the surface and deliver a clear written assessment of what's happening and what to do about it.</p>
+      <ul>
+        <li>Something feels off but you can't identify what or why</li>
+        <li>Patterns that don't make sense and need a closer look</li>
+        <li>Recurring problems that keep surfacing without resolution</li>
+        <li>Suspecting something is wrong but needing someone to confirm and explain it</li>
+        <li class="open-ended">...and other situations where you need someone to look deeper than the surface</li>
+      </ul>
+    </div>
+
+    <div class="service-card" style="grid-column: 1 / -1; max-width: 600px;">
+      <div class="service-num">05</div>
+      <span class="service-tag">One Time Project</span>
+      <span class="service-type">Strategic advisory · proposal prep available</span>
+      <h3>Contract Positioning Advisory</h3>
+      <p class="service-who">For practices considering a nonstandard or negotiated payer contract</p>
+      <p>Before you pursue a contract change, you need to know whether your metrics and standing make you a viable candidate — and what case can actually be made. We research, assess, and deliver a clear written advisory on viability based on how payers actually evaluate these requests. If the assessment identifies a strong case, we prepare the proposal for submission.</p>
+      <ul>
+        <li>Understanding whether your standing supports pursuing a contract change</li>
+        <li>Knowing what payers actually look for before you submit anything</li>
+        <li>Building a supported case based on your metrics and market factors</li>
+        <li>Getting a clear assessment before investing time in a submission</li>
+        <li class="open-ended">...and other contract positioning situations where payer-side insight makes the difference</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="diff-band">
+  <div class="inner">
+    <p class="section-eyebrow">Why For the Practice</p>
+    <h2 class="section-title">Different by design. <em>Effective by experience.</em></h2>
+    <div class="section-rule"></div>
+    <div class="diff-grid">
+      <div class="diff-card">
+        <div class="diff-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+        </div>
+        <strong>Payer-side perspective</strong>
+        <span>We understand how insurance companies think, evaluate, and respond — because we've been inside. That view is your advantage.</span>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon">
+          <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <strong>Anticipatory intelligence</strong>
+        <span>We see what's coming before it arrives. Built on 20 years of watching how things go wrong — from the inside.</span>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <strong>Real advocacy — not shuffling</strong>
+        <span>We don't relay messages. We understand deeply, document accurately, ask the right questions, and take action. Anyone can forward an email.</span>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <strong>Digital-first navigation</strong>
+        <span>Payers are pushing everything online. We help practices adapt to automated tools and digital workflows without losing control.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="newgrad-band">
+  <div class="inner">
+    <div>
+      <p class="eyebrow">Also supporting</p>
+      <h3>Newly licensed providers entering practice</h3>
+      <p>Starting your practice on the right foundation matters. We work with newly licensed providers to navigate credentialing, enrollment, and payer relationships from day one — so you're set up correctly before problems have a chance to start.</p>
+    </div>
+    <a href="#contact" class="btn-white">Learn more</a>
+  </div>
+</div>
+
+<div class="section" id="about">
+  <div class="about-grid">
+    <div class="about-visual">
+      <div class="about-visual-card">
+        <div class="about-num">20</div>
+        <div class="about-num-label">Years on the payer side</div>
+        <div class="about-rule"></div>
+        <p class="about-quote">"Inside knowledge,<br>working for your practice."</p>
+      </div>
+    </div>
+    <div class="about-text">
+      <p class="section-eyebrow">About</p>
+      <h2>We know how payers think — <em>because we've been there</em></h2>
+      <p>For the Practice was built on two decades of experience working inside a health insurance company — across claims processing, audit and overpayment recovery, network management, contracting, and provider relations.</p>
+      <p>That means when something isn't working — a claim is stuck, an enrollment is stalled, a payer keeps pushing back — we don't just see the symptom. We understand the cause, and we know how to move it forward.</p>
+      <p>As the industry shifts toward automation and digital-first workflows, having someone in your corner who understands both sides of the equation matters more than ever.</p>
+    </div>
+  </div>
+</div>
+
+<div class="contact-section" id="contact">
+  <p class="eyebrow">Get started</p>
+  <h2>Ready to have someone in your corner<br>who truly <em>gets it?</em></h2>
+  <div class="contact-rule"></div>
+  <p>Reach out by email and we'll get back to you within one business day. No pressure, no phone calls — just a straightforward conversation about where you are and how we can help.</p>
+  <a href="mailto:hello@forthepractice.com" class="btn-outline">hello@forthepractice.com</a>
+</div>
+
+<footer>
+  <div class="footer-logo">for the <span>practice.</span></div>
+  <p>&copy; 2025 For the Practice &nbsp;·&nbsp; forthepractice.com &nbsp;·&nbsp; Texas</p>
+</footer>
+
+</body>
+</html>
