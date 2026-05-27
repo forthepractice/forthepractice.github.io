@@ -67,7 +67,12 @@
   .section-intro { font-size: 1rem; color: var(--text-mid); max-width: 600px; font-weight: 300; margin-bottom: 3.5rem; line-height: 1.9; }
 
   /* SERVICES */
-  .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .services-grid-bottom { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
+  .services-grid-bottom .service-card { grid-column: auto; }
+  .services-grid-bottom { }
+  .services-grid-bottom .service-card:first-child { grid-column: 1 / 2; margin-left: 33.33%; }
+  .services-grid-bottom .service-card:last-child { grid-column: 2 / 3; }
   .service-card { background: var(--off-white); border: 1px solid var(--border); border-radius: 3px; padding: 2.25rem 2rem; position: relative; overflow: hidden; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
   .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: var(--amber); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
   .service-card:hover { transform: translateY(-4px); border-color: var(--amber-light); box-shadow: 0 12px 40px rgba(239,159,39,0.1); }
@@ -152,11 +157,11 @@
 <body>
 
 <nav>
-  <div class="nav-logo">
+  <a href="#" style="text-decoration: none;"><div class="nav-logo">
     <div class="nav-logo-text">for the <span>practice.</span></div>
     <div class="nav-logo-rule"></div>
     <div class="nav-logo-tag">Insight that moves you forward.</div>
-  </div>
+  </div></a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#about">About</a></li>
@@ -170,7 +175,7 @@
   <div class="hero-bg-dot"></div>
   <div class="hero-inner">
     <p class="hero-eyebrow">Provider Operations & Advisory · Texas</p>
-    <h1>We see what others miss —<br>and <em>act</em> before it<br>becomes a problem.</h1>
+    <h1>We see what others miss,<br>and <em>act</em> before it<br>becomes a problem.</h1>
     <div class="hero-rule"></div>
     <p class="hero-sub">Independent practices and providers deserve more than generic support and information shuffling. For the Practice brings 20 years of payer-side expertise to your corner — so you're always a step ahead.</p>
     <div class="hero-actions">
@@ -244,6 +249,8 @@
       </ul>
     </div>
 
+  </div>
+  <div class="services-grid-bottom">
     <div class="service-card">
       <div class="service-num">04</div>
       <span class="service-tag">One Time Project</span>
@@ -260,7 +267,7 @@
       </ul>
     </div>
 
-    <div class="service-card" style="grid-column: 1 / -1; max-width: 600px;">
+    <div class="service-card">
       <div class="service-num">05</div>
       <span class="service-tag">One Time Project</span>
       <span class="service-type">Strategic advisory · proposal prep available</span>
